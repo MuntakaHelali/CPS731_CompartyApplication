@@ -9,12 +9,11 @@
     tools:context=".MainActivity">
 
     <TableRow
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="70dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
         <Button
             android:id="@+id/btn_cpu"
@@ -31,11 +30,10 @@
     </TableRow>
 
     <TableRow
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
         <Button
             android:id="@+id/btn_ram"
@@ -52,12 +50,11 @@
     </TableRow>
 
     <TableRow
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:layout_marginBottom="70dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
         <Button
             android:id="@+id/btn_case"
