@@ -11,9 +11,8 @@
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp">
 
         <Button
             android:id="@+id/btn_cpu"
@@ -33,8 +32,7 @@
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/btn_ram"
@@ -54,9 +52,7 @@
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
-        android:layout_marginBottom="50dp">
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/btn_case"
