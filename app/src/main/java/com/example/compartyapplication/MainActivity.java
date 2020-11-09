@@ -56,5 +56,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button cases = findViewById(R.id.btn_case);
+        cases.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(MainActivity.this, Cases.class));
+            }
+        });
+
     }
 }
