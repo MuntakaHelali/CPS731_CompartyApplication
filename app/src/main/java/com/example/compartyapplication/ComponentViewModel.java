@@ -14,6 +14,7 @@ public class ComponentViewModel extends AndroidViewModel
     private LiveData<List<Component>> allComponents;
     private LiveData<List<Component>> allCPUs;
     private LiveData<List<Component>> allGPU;
+    private LiveData<List<Component>> allRAMS;
 
     public ComponentViewModel(@NonNull Application application) {
         super(application);
@@ -21,6 +22,7 @@ public class ComponentViewModel extends AndroidViewModel
         allComponents = repository.getAllComponents();
         allCPUs = repository.getAllCPUs();
         allGPU = repository.getAllGPUs();
+        allRAMS = repository.getAllRams();
     }
 
     public void insert(Component component)
@@ -53,5 +55,7 @@ public class ComponentViewModel extends AndroidViewModel
     public LiveData<List<Component>> getAllGPUs() {
         return allGPU;
     }
+
+    public LiveData<List<Component>> getAllRAMS() {return allRAMS;}
 
 }

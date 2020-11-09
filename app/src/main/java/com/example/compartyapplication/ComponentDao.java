@@ -27,10 +27,12 @@ public interface ComponentDao
     @Query("SELECT * FROM component_table")
     LiveData<List<Component>> getAllComponents();
 
-    @Query("SELECT * FROM component_table WHERE productType = 'cpu'")
+    @Query("SELECT * FROM component_table WHERE productType = 'cpu' ORDER BY price DESC")
     LiveData<List<Component>> getAllCPUs();
 
-    @Query("SELECT * FROM component_table WHERE productType = 'gpu'")
+    @Query("SELECT * FROM component_table WHERE productType = 'gpu' ORDER BY price DESC")
     LiveData<List<Component>> getAllGPUs();
 
+    @Query("SELECT * FROM component_table WHERE productType = 'ram' ORDER BY price DESC")
+    LiveData<List<Component>> getAllRAMs();
 }
