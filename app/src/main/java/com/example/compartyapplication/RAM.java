@@ -25,6 +25,7 @@ public class RAM extends AppCompatActivity {
 
     private ComponentViewModel componentViewModel;
     public static final int ADD_NOTE_REQUEST = 1;
+    public static final int EDIT_COMPONENT_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,21 @@ public class RAM extends AppCompatActivity {
                 Toast.makeText(RAM.this, "Component Deleted", Toast.LENGTH_LONG).show();
             }
         }).attachToRecyclerView(recyclerView);
+
+        componentAdapter.setOnItemClickListener(new ComponentAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Component component) {
+                Intent intent = new Intent(RAM.this, AddEditComponentActivity.class);
+                intent.putExtra(AddEditComponentActivity.EXTRA_ID, component.getId());
+                intent.putExtra(AddEditComponentActivity.EXTRA_TITLE, component.getName());
+                intent.putExtra(AddEditComponentActivity.EXTRA_DESCRIPTION, component.getDescription());
+                intent.putExtra(AddEditComponentActivity.EXTRA_MANUFACTURER, component.getManufacturer());
+                intent.putExtra(AddEditComponentActivity.EXTRA_LINK, component.getLink());
+                intent.putExtra(AddEditComponentActivity.EXTRA_PRICE, component.getPrice());
+                intent.putExtra(AddEditComponentActivity.EXTRA_TYPE, component.getProductType());
+                startActivityForResult(intent, EDIT_COMPONENT_REQUEST);
+            }
+        });
     }
 
     @Override
@@ -91,7 +107,28 @@ public class RAM extends AppCompatActivity {
 
             Toast.makeText(this, "Component saved", Toast.LENGTH_SHORT).show();
         }
-        else{
+        else if(requestCode == EDIT_COMPONENT_REQUEST && resultCode == RESULT_OK){
+            int id = data.getIntExtra(AddEditComponentActivity.EXTRA_ID, -1);
+
+            if(id ==-1)
+            {
+                Toast.makeText(this,"Component can't be updated",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String title = data.getStringExtra(AddEditComponentActivity.EXTRA_TITLE);
+            String description = data.getStringExtra(AddEditComponentActivity.EXTRA_DESCRIPTION);
+            String manufacturer = data.getStringExtra(AddEditComponentActivity.EXTRA_MANUFACTURER);
+            String link = data.getStringExtra(AddEditComponentActivity.EXTRA_LINK);
+            double price = data.getDoubleExtra(AddEditComponentActivity.EXTRA_PRICE, 0.00);
+            String type = data.getStringExtra(AddEditComponentActivity.EXTRA_TYPE);
+
+            Component component = new Component(title, 0, description, manufacturer, link, price, type);
+            component.setId(id);
+            componentViewModel.update(component);
+
+            Toast.makeText(this, "Component updated", Toast.LENGTH_SHORT).show();
+        } else{
             Toast.makeText(this, "Component not saved", Toast.LENGTH_SHORT).show();
         }
     }
