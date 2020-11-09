@@ -56,6 +56,8 @@ public class ComponentViewModel extends AndroidViewModel
 
     public void deleteAllMotherboard() {repository.deleteAllMotherboard();}
 
+    public void deleteAllCases() {repository.deleteAllCases();}
+
     public LiveData<List<Component>> getAllComponents() {
         return allComponents;
     }

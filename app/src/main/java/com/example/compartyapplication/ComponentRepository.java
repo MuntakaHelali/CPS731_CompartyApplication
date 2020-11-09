@@ -60,6 +60,8 @@ public class ComponentRepository
 
     public void deleteAllMotherboard() {new DeleteAllMotherboardAsyncTask(componentDao).execute();}
 
+    public void deleteAllCases() {new DeleteAllCasesAsyncTask(componentDao).execute();}
+
 
     public LiveData<List<Component>> getAllComponents()
     {
@@ -181,6 +183,19 @@ public class ComponentRepository
         @Override
         protected Void doInBackground(Void... Voids){
             componentDao.deleteAllMotherboard();
+            return null;
+        }
+    }
+
+    private static class DeleteAllCasesAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ComponentDao componentDao;
+        private DeleteAllCasesAsyncTask(ComponentDao componentDao){
+            this.componentDao = componentDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... Voids){
+            componentDao.deleteAllCases();
             return null;
         }
     }

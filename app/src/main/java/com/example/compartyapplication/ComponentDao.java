@@ -33,6 +33,9 @@ public interface ComponentDao
     @Query("DELETE FROM component_table WHERE productType = 'motherboard'")
     void deleteAllMotherboard();
 
+    @Query("DELETE FROM component_table WHERE productType = 'case'")
+    void deleteAllCases();
+
     @Query("SELECT * FROM component_table")
     LiveData<List<Component>> getAllComponents();
 
