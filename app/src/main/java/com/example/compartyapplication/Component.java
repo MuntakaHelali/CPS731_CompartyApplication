@@ -27,6 +27,10 @@ public class Component
         this.productType = productType;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

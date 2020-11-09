@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.ComponentHolder>
-{
+public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.ComponentHolder> {
     private List<Component> component = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -24,8 +24,7 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ComponentHolder holder, int position)
-    {
+    public void onBindViewHolder(@NonNull ComponentHolder holder, int position) {
         Component currentComponent = component.get(position);
         holder.title.setText(currentComponent.getName());
         holder.manufacturer.setText(currentComponent.getManufacturer());
@@ -37,18 +36,16 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
         return component.size();
     }
 
-    public void setComponent(List<Component> component)
-    {
+    public void setComponent(List<Component> component) {
         this.component = component;
         notifyDataSetChanged();
     }
 
-    public Component getComponentAt(int position){
+    public Component getComponentAt(int position) {
         return component.get(position);
     }
 
-    class ComponentHolder extends RecyclerView.ViewHolder
-    {
+    class ComponentHolder extends RecyclerView.ViewHolder {
         private TextView title;
         private TextView manufacturer;
         private TextView price;
@@ -58,6 +55,24 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
             title = itemView.findViewById(R.id.text_view_title);
             manufacturer = itemView.findViewById(R.id.text_view_manufacturer);
             price = itemView.findViewById(R.id.text_view_price);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(component.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Component component);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +34,7 @@ public class GraphicsCard extends AppCompatActivity {
         buttonAddComponent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(GraphicsCard.this, AddComponentActivity.class);
+                Intent intent = new Intent(GraphicsCard.this, AddEditComponentActivity.class);
                 startActivityForResult(intent,ADD_NOTE_REQUEST);
             }
         });
@@ -78,12 +77,12 @@ public class GraphicsCard extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
-            String title = data.getStringExtra(AddComponentActivity.EXTRA_TITLE);
-            String description = data.getStringExtra(AddComponentActivity.EXTRA_DESCRIPTION);
-            String manufacturer = data.getStringExtra(AddComponentActivity.EXTRA_MANUFACTURER);
-            String link = data.getStringExtra(AddComponentActivity.EXTRA_LINK);
-            double price = data.getDoubleExtra(AddComponentActivity.EXTRA_PRICE, 0.00);
-            String type = data.getStringExtra(AddComponentActivity.EXTRA_TYPE);
+            String title = data.getStringExtra(AddEditComponentActivity.EXTRA_TITLE);
+            String description = data.getStringExtra(AddEditComponentActivity.EXTRA_DESCRIPTION);
+            String manufacturer = data.getStringExtra(AddEditComponentActivity.EXTRA_MANUFACTURER);
+            String link = data.getStringExtra(AddEditComponentActivity.EXTRA_LINK);
+            double price = data.getDoubleExtra(AddEditComponentActivity.EXTRA_PRICE, 0.00);
+            String type = data.getStringExtra(AddEditComponentActivity.EXTRA_TYPE);
 
 
             Component component = new Component(title, 0, description, manufacturer, link, price, type);

@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddComponentActivity"
+            android:name=".AddEditComponentActivity"
             android:parentActivityName=".MainActivity" />
     </application>
 

@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-public class AddComponentActivity extends AppCompatActivity {
+public class AddEditComponentActivity extends AppCompatActivity {
+    public static final String EXTRA_ID =
+            "com.example.compartyapplication.EXTRA_ID";
     public static final String EXTRA_TITLE =
             "com.example.compartyapplication.EXTRA_TITLE";
     public static final String EXTRA_DESCRIPTION =
@@ -46,7 +48,22 @@ public class AddComponentActivity extends AppCompatActivity {
         editTextType = findViewById(R.id.edit_text_type);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Component");
+
+        Intent intent = getIntent();
+
+        if (intent.hasExtra(EXTRA_ID))
+        {
+            setTitle("Edit Component");
+            editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE));
+            editTextDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+            editTextManufacturer.setText(intent.getStringExtra(EXTRA_MANUFACTURER));
+            editTextLink.setText(intent.getStringExtra(EXTRA_LINK));
+            editTextPrice.setText(intent.getStringExtra(EXTRA_PRICE));
+            editTextType.setText(intent.getStringExtra(EXTRA_TYPE));
+        }
+        else {
+            setTitle("Add Component");
+        }
     }
 
     private void saveComponent(){
@@ -70,6 +87,11 @@ public class AddComponentActivity extends AppCompatActivity {
         data.putExtra(EXTRA_LINK, link);
         data.putExtra(EXTRA_PRICE, price);
         data.putExtra(EXTRA_TYPE, type);
+
+        int id = getIntent().getIntExtra(EXTRA_ID, -1);
+        if (id != -1){
+            data.putExtra(EXTRA_ID, id);
+        }
 
         setResult(RESULT_OK, data);
         finish();
