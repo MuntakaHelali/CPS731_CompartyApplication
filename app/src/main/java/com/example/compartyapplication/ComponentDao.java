@@ -21,6 +21,9 @@ public interface ComponentDao
     @Delete
     void delete (Component component);
 
+    @Query("DELETE FROM component_table WHERE productType = 'cpu'")
+    void deleteAllCPUS();
+
     @Query("DELETE FROM component_table WHERE productType = 'gpu'")
     void deleteAllComponents();
 

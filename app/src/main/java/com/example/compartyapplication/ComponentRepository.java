@@ -46,6 +46,8 @@ public class ComponentRepository
         new DeleteComponentAsyncTask(componentDao).execute(component);
     }
 
+    public void deleteAllCPUS() {new DeleteAllCPUSAsyncTask(componentDao).execute();}
+
     public void deleteAllComponents()
     {
         new DeleteAllComponentAsyncTask(componentDao).execute();
@@ -127,6 +129,19 @@ public class ComponentRepository
         @Override
         protected Void doInBackground(Component... components) {
             componentDao.delete(components[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllCPUSAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ComponentDao componentDao;
+        private DeleteAllCPUSAsyncTask(ComponentDao componentDao){
+            this.componentDao = componentDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... Voids){
+            componentDao.deleteAllCPUS();
             return null;
         }
     }
