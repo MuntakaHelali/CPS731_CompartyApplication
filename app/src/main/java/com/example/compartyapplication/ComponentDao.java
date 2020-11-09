@@ -41,4 +41,7 @@ public interface ComponentDao
 
     @Query("SELECT * FROM component_table WHERE productType = 'case' ORDER BY price DESC")
     LiveData<List<Component>> getAllCASES();
+
+    @Query("SELECT * FROM component_table WHERE productType = 'powerSupply' ORDER BY price DESC")
+    LiveData<List<Component>> getAllPOWERSUPPLY();
 }

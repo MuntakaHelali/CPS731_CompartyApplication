@@ -66,5 +66,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button powerSupply = findViewById(R.id.btn_power);
+        powerSupply.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(MainActivity.this, PowerSupply.class));
+            }
+        });
+
     }
 }
