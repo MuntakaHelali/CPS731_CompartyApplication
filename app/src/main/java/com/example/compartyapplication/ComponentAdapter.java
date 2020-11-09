@@ -43,6 +43,10 @@ public class ComponentAdapter extends RecyclerView.Adapter<ComponentAdapter.Comp
         notifyDataSetChanged();
     }
 
+    public Component getComponentAt(int position){
+        return component.get(position);
+    }
+
     class ComponentHolder extends RecyclerView.ViewHolder
     {
         private TextView title;

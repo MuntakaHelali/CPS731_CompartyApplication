@@ -1,16 +1,22 @@
 package com.example.compartyapplication;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -51,6 +57,20 @@ public class GraphicsCard extends AppCompatActivity {
                 componentAdapter.setComponent(components);
             }
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                componentViewModel.delete(componentAdapter.getComponentAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(GraphicsCard.this, "Component Deleted", Toast.LENGTH_LONG).show();
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -60,9 +80,38 @@ public class GraphicsCard extends AppCompatActivity {
         if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
             String title = data.getStringExtra(AddComponentActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddComponentActivity.EXTRA_DESCRIPTION);
-            int priority = data.getIntExtra(AddComponentActivity.EXTRA_PRIORITY, 1);
+            String manufacturer = data.getStringExtra(AddComponentActivity.EXTRA_MANUFACTURER);
+            String link = data.getStringExtra(AddComponentActivity.EXTRA_LINK);
+            double price = data.getDoubleExtra(AddComponentActivity.EXTRA_PRICE, 0.00);
+            String type = data.getStringExtra(AddComponentActivity.EXTRA_TYPE);
 
-            Component component = new Component(title, 99, description, "default_manufacturer", "default_link", 420.99, "default_type");
+
+            Component component = new Component(title, 0, description, manufacturer, link, price, type);
+            componentViewModel.insert(component);
+
+            Toast.makeText(this, "Component saved", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Component not saved", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.delete_all_components:
+                componentViewModel.deleteAllComponent();
+                Toast.makeText(this,"All components deleted", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

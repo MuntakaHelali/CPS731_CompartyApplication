@@ -39,6 +39,12 @@ public class ComponentRepository
         new DeleteComponentAsyncTask(componentDao).execute(component);
     }
 
+    public void deleteAllComponents()
+    {
+        new DeleteAllComponentAsyncTask(componentDao).execute();
+    }
+
+
     public LiveData<List<Component>> getAllComponents()
     {
         return allComponents;
@@ -99,6 +105,19 @@ public class ComponentRepository
         @Override
         protected Void doInBackground(Component... components) {
             componentDao.delete(components[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllComponentAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ComponentDao componentDao;
+        private DeleteAllComponentAsyncTask(ComponentDao componentDao){
+            this.componentDao = componentDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... Voids){
+            componentDao.deleteAllComponents();
             return null;
         }
     }
