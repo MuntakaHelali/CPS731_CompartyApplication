@@ -50,6 +50,8 @@ public class ComponentViewModel extends AndroidViewModel
         repository.deleteAllComponents();
     }
 
+    public void deleteAllRam() {repository.deleteAllRam();}
+
     public LiveData<List<Component>> getAllComponents() {
         return allComponents;
     }

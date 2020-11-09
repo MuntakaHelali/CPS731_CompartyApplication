@@ -51,6 +51,11 @@ public class ComponentRepository
         new DeleteAllComponentAsyncTask(componentDao).execute();
     }
 
+    public void deleteAllRam()
+    {
+        new DeleteAllRamAsyncTask(componentDao).execute();
+    }
+
 
     public LiveData<List<Component>> getAllComponents()
     {
@@ -133,6 +138,19 @@ public class ComponentRepository
         @Override
         protected Void doInBackground(Void... Voids){
             componentDao.deleteAllComponents();
+            return null;
+        }
+    }
+
+    private static class DeleteAllRamAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ComponentDao componentDao;
+        private DeleteAllRamAsyncTask(ComponentDao componentDao){
+            this.componentDao = componentDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... Voids){
+            componentDao.deleteAllRam();
             return null;
         }
     }
