@@ -58,6 +58,8 @@ public class ComponentViewModel extends AndroidViewModel
 
     public void deleteAllCases() {repository.deleteAllCases();}
 
+    public void deleteAllPowerSupply() {repository.deleteAllPowerSupply();}
+
     public LiveData<List<Component>> getAllComponents() {
         return allComponents;
     }
