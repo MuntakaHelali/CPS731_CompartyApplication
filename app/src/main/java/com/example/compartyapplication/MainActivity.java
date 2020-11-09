@@ -1,17 +1,12 @@
 package com.example.compartyapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +22,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(MainActivity.this, processor.class));
+                startActivity(new Intent(MainActivity.this, Processor.class));
+            }
+        });
+
+        Button graphics_card = findViewById(R.id.btn_gpu);
+        graphics_card.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(MainActivity.this, GraphicsCard.class));
             }
         });
     }

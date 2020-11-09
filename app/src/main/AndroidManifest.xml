@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CompartyApplication">
-        <activity android:name=".processor"></activity>
+        <activity android:name=".AddComponentActivity"></activity>
+        <activity android:name=".Processor" />
+        <activity android:name=".GraphicsCard" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

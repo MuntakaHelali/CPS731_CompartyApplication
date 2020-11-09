@@ -21,7 +21,13 @@ public interface ComponentDao
     @Delete
     void delete (Component component);
 
-    @Query("SELECT * FROM component_table ORDER BY price DESC")
+    @Query("SELECT * FROM component_table")
     LiveData<List<Component>> getAllComponents();
+
+    @Query("SELECT * FROM component_table WHERE productType = 'cpu'")
+    LiveData<List<Component>> getAllCPUs();
+
+    @Query("SELECT * FROM component_table WHERE productType = 'gpu'")
+    LiveData<List<Component>> getAllGPUs();
 
 }

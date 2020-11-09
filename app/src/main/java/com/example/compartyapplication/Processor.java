@@ -3,6 +3,7 @@ package com.example.compartyapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,7 +11,7 @@ import android.os.Bundle;
 
 import java.util.List;
 
-public class processor extends AppCompatActivity {
+public class Processor extends AppCompatActivity {
     private ComponentViewModel componentViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,10 @@ public class processor extends AppCompatActivity {
         ComponentAdapter componentAdapter = new ComponentAdapter();
         recyclerView.setAdapter(componentAdapter);
 
-        componentViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ComponentViewModel.class);
-        componentViewModel.getAllNotes().observe(this, new Observer<List<Component>>() {
+        // componentViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(ComponentViewModel.class);
+        componentViewModel = ViewModelProviders.of(this).get(ComponentViewModel.class);
+        componentViewModel.getAllProcessors().observe(this, new Observer<List<Component>>() {
+        // componentViewModel.getAllComponents().observe(this, new Observer<List<Component>>() {
             @Override
             public void onChanged(List<Component> components)
             {

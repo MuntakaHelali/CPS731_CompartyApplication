@@ -12,10 +12,15 @@ public class ComponentViewModel extends AndroidViewModel
 {
     private ComponentRepository repository;
     private LiveData<List<Component>> allComponents;
+    private LiveData<List<Component>> allCPUs;
+    private LiveData<List<Component>> allGPU;
+
     public ComponentViewModel(@NonNull Application application) {
         super(application);
         repository = new ComponentRepository(application);
         allComponents = repository.getAllComponents();
+        allCPUs = repository.getAllCPUs();
+        allGPU = repository.getAllGPUs();
     }
 
     public void insert(Component component)
@@ -33,8 +38,16 @@ public class ComponentViewModel extends AndroidViewModel
         repository.delete(component);
     }
 
-    public LiveData<List<Component>> getAllNotes() {
+    public LiveData<List<Component>> getAllComponents() {
         return allComponents;
+    }
+
+    public LiveData<List<Component>> getAllProcessors() {
+        return allCPUs;
+    }
+
+    public LiveData<List<Component>> getAllGPUs() {
+        return allGPU;
     }
 
 }

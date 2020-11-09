@@ -11,12 +11,17 @@ public class ComponentRepository
 {
     private ComponentDao componentDao;
     private LiveData<List<Component>> allComponents;
+    private LiveData<List<Component>> allCPUs;
+    private LiveData<List<Component>> allGraphicsCards;
+
 
     public ComponentRepository(Application application)
     {
         ComponentDatabase database = ComponentDatabase.getInstance(application);
         componentDao = database.componentDao();
         allComponents = componentDao.getAllComponents();
+        allCPUs = componentDao.getAllCPUs();
+        allGraphicsCards = componentDao.getAllGPUs();
     }
 
     public void insert(Component component)
@@ -38,6 +43,17 @@ public class ComponentRepository
     {
         return allComponents;
     }
+
+    public LiveData<List<Component>> getAllCPUs()
+    {
+        return allCPUs;
+    }
+
+    public LiveData<List<Component>> getAllGPUs()
+    {
+        return allGraphicsCards;
+    }
+
 
     private static class InsertComponentAsyncTask extends AsyncTask<Component, Void, Void>
     {
