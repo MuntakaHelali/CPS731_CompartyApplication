@@ -14,6 +14,7 @@ public class ComponentRepository
     private LiveData<List<Component>> allCPUs;
     private LiveData<List<Component>> allGraphicsCards;
     private LiveData<List<Component>> allRams;
+    private LiveData<List<Component>> allMotherboards;
 
     public ComponentRepository(Application application)
     {
@@ -23,6 +24,7 @@ public class ComponentRepository
         allCPUs = componentDao.getAllCPUs();
         allGraphicsCards = componentDao.getAllGPUs();
         allRams = componentDao.getAllRAMs();
+        allMotherboards = componentDao.getAllMOTHERBOARDS();
     }
 
     public void insert(Component component)
@@ -62,6 +64,8 @@ public class ComponentRepository
     }
 
     public LiveData<List<Component>> getAllRams() {return allRams;}
+
+    public LiveData<List<Component>> getAllMotherboards() {return allMotherboards;}
 
 
     private static class InsertComponentAsyncTask extends AsyncTask<Component, Void, Void>

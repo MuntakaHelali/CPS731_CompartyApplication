@@ -46,5 +46,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button motherBoard = findViewById(R.id.btn_mobo);
+        motherBoard.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(MainActivity.this, Motherboard.class));
+            }
+        });
+
     }
 }

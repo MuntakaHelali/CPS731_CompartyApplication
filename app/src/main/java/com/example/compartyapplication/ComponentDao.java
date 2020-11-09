@@ -35,4 +35,7 @@ public interface ComponentDao
 
     @Query("SELECT * FROM component_table WHERE productType = 'ram' ORDER BY price DESC")
     LiveData<List<Component>> getAllRAMs();
+
+    @Query("SELECT * FROM component_table WHERE productType = 'motherboard' ORDER BY price DESC")
+    LiveData<List<Component>> getAllMOTHERBOARDS();
 }
